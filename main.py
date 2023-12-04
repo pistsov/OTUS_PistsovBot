@@ -1,6 +1,6 @@
 import peewee
 from aiogram import Bot, Dispatcher, executor, types
-import get_rates
+import get_rates_async
 
 # Подключение к базе данных
 db = peewee.SqliteDatabase('bot_database.db')
@@ -48,11 +48,11 @@ async def reply_message(message):
     print(message.from_user.username, message.text)
     match message.text:
         case '/eur':
-            eur = get_rates.fetch_eur()
+            eur = await get_rates_async.fetch_eur()
             eur_text = '1 евро = ' + str(eur) + ' рублей по курсу ЦБ РФ на сегодня'
             await message.reply(eur_text)
         case '/usd':
-            usd = get_rates.fetch_usd()
+            usd = await get_rates_async.fetch_usd()
             usd_text = '1 доллар = ' + str(usd) + ' рублей по курсу ЦБ РФ на сегодня'
             await message.reply(usd_text)
         case '/❤️':
