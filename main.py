@@ -1,6 +1,7 @@
 import peewee
 from aiogram import Bot, Dispatcher, executor, types
 import get_rates_async
+from secret import TOKEN
 
 # Подключение к базе данных
 db = peewee.SqliteDatabase('bot_database.db')
@@ -19,7 +20,7 @@ db.connect()
 db.create_tables([User])
 
 # Инициализация бота
-bot = Bot(token='6264270259:AAGBz_RiyDBKF97Pdhq1EN1Iq77BNUKXyG4')
+bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
 # Обработчик команды /start
